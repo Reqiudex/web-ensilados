@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Acceso | Ensilados Santa Cruz</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5bec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#162210",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 antialiased h-screen flex overflow-hidden">
+
+    <div class="flex-1 flex flex-col justify-center px-8 lg:px-24 relative z-10 h-full overflow-y-auto w-full lg:w-1/2">
+        <div class="absolute top-8 left-8 flex items-center gap-2 cursor-pointer z-50 hover:opacity-80 transition-opacity"
+            onclick="window.location.href='index.html'" data-aos="fade-down">
+            <div
+                class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-background-dark shadow-md">
+                <span class="material-symbols-outlined">agriculture</span>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase">Santa
+                Cruz</span>
+        </div>
+
+        <div class="w-full max-w-md mx-auto pt-24 pb-12" data-aos="fade-right" data-aos-duration="1000">
+            <div class="mb-10 text-center">
+                <h2 class="text-4xl font-black mb-2 tracking-tight">Bienvenido de vuelta</h2>
+                <p class="text-slate-500 dark:text-slate-400">Accede a tu cuenta para gestionar pedidos y rutas.</p>
+            </div>
+
+            <form class="space-y-6" id="login-form">
+                <div class="space-y-2 group">
+                    <label
+                        class="text-sm font-bold text-slate-700 dark:text-slate-300 block transition-colors group-focus-within:text-primary">Correo
+                        Electrónico</label>
+                    <div
+                        class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">mail</span>
+                        <input type="email" id="login-email" required
+                            class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 text-slate-900 dark:text-white outline-none"
+                            placeholder="usuario@email.com">
+                    </div>
+                </div>
+
+                <div class="space-y-2 group relative">
+                    <div class="flex justify-between items-center">
+                        <label
+                            class="text-sm font-bold text-slate-700 dark:text-slate-300 transition-colors group-focus-within:text-primary">Contraseña</label>
+                        <a href="#" class="text-xs font-bold text-primary hover:underline">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <div
+                        class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">lock</span>
+                        <input type="password" id="login-pass" required
+                            class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 text-slate-900 dark:text-white outline-none"
+                            placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-primary text-slate-900 font-bold py-4 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden group">
+                    <span class="relative z-10 flex items-center justify-center gap-2">Iniciar Sesión <span
+                            class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></span>
+                </button>
+            </form>
+
+            <div class="mt-8 text-center text-sm text-slate-600 dark:text-slate-400">
+                ¿No tienes cuenta? <a href="register.html"
+                    class="text-primary font-bold hover:underline transition-all">Regístrate aquí</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Slider Right Side -->
+    <div class="hidden lg:block lg:w-1/2 relative h-full overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] hover:scale-110 scale-105"
+            data-aos="zoom-out" data-aos-duration="2000"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCM--CC0_TMASDlq0MuBEWXrYTTQCRmmZxWOAJyJHGaMeyOEjTB8_myOjNq-mh00yWetrkEVzJWBaDKPKayqsXIyGmIZO1axjJy5lfTVOOzENsQCP2xmAqA0onRnPRrJGE7x6x3Y6Qq4MqnVQcB1PSw01MjwwzxNv03m5LrMXwUwDEco_BYNmwiExawoKOAQEF6gColWXGNwgLvl8CIgElsqp2mqLxdkCNKUUHDE7lMkD0eALG6lJLZctjZ_9DHf717jIa8Muwnp0');">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/40 to-transparent">
+        </div>
+        <div class="absolute bottom-12 left-12 right-12 text-white" data-aos="fade-up" data-aos-delay="600"
+            data-aos-duration="1000">
+            <h3 class="text-4xl font-black mb-3 leading-tight">Gestiona tus recursos<br>con precisión.</h3>
+            <p class="text-lg opacity-80 border-l-4 border-primary pl-4">El acceso al mejor forraje para potenciar tu
+                granja y maximizar el rendimiento.</p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800 });
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>

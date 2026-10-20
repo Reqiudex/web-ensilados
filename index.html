@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Ensilados Santa Cruz | Forraje de Alta Calidad</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+
+  <!-- Estilos y scripts para animaciones y carruseles -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#5bec13",
+            "background-light": "#f6f8f6",
+            "background-dark": "#162210",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #5bec13 !important;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300 antialiased overflow-x-hidden">
+  <div class="relative flex min-h-screen w-full flex-col">
+    <!-- Navigation -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md transition-all duration-300"
+      id="main-nav">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div class="flex items-center gap-2 cursor-pointer group" onclick="window.location.href='index.html'">
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-background-dark shadow-md group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined">agriculture</span>
+          </div>
+          <span
+            class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase transition-colors">Santa
+            Cruz</span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-sm font-semibold text-primary transition-colors" href="index.html">Inicio</a>
+          <a class="text-sm font-semibold hover:text-primary transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full pb-1"
+            href="servicios.html">Servicios</a>
+          <a class="text-sm font-semibold hover:text-primary transition-colors relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full pb-1"
+            href="pedidos.html">Pedidos</a>
+
+          <a class="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-primary transition-colors ml-4"
+            href="login.html" id="login-nav-link">
+            <span class="material-symbols-outlined">login</span>
+            Acceso
+          </a>
+          <div class="relative group hidden" id="user-nav-dropdown">
+            <div class="flex items-center gap-2 cursor-pointer ml-4">
+              <span id="auth-user-name" class="text-sm font-bold text-slate-900 dark:text-white"></span>
+              <div
+                class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold overflow-hidden">
+                <span class="material-symbols-outlined text-[18px]">person</span>
+              </div>
+            </div>
+            <div
+              class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+              <div class="p-2 flex flex-col gap-1">
+                <button onclick="window.location.href='pedidos.html'"
+                  class="w-full text-left px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg flex items-center gap-2 transition-colors"><span
+                    class="material-symbols-outlined text-[18px]">dashboard</span> Panel</button>
+                <button onclick="logoutUser()"
+                  class="w-full text-left px-3 py-2 text-sm font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg flex items-center gap-2 transition-colors mt-2"><span
+                    class="material-symbols-outlined text-[18px]">logout</span> Salir</button>
+              </div>
+            </div>
+          </div>
+          <a class="flex items-center justify-center rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-background-dark shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all"
+            href="cotizacion.html">Cotizar Envío</a>
+        </nav>
+        <button class="md:hidden text-slate-900 dark:text-white">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </header>
+    <main class="flex-grow">
+
+      <!-- Hero Section -->
+      <section class="relative overflow-hidden py-16 md:py-24" id="home">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="grid lg:grid-cols-2 items-center gap-12">
+            <div class="z-10 flex flex-col gap-8" data-aos="fade-right" data-aos-duration="1000">
+              <div
+                class="inline-flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-bold text-primary ring-1 ring-inset ring-primary/20"
+                data-aos="zoom-in" data-aos-delay="200">
+                <span class="material-symbols-outlined text-sm">verified</span>
+                Calidad Certificada
+              </div>
+              <h1 class="text-5xl font-black leading-tight tracking-tight text-slate-900 dark:text-white md:text-7xl">
+                Alimenta el <span class="text-primary relative inline-block">Potencial<span
+                    class="absolute bottom-1 left-0 w-full h-3 bg-primary/30 -z-10"></span></span> de tu Granja.
+              </h1>
+              <p class="max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-400" data-aos="fade-up"
+                data-aos-delay="300">
+                Ensilado premium de maíz y sorgo formulado específicamente para maximizar el rendimiento nutricional y
+                la salud de tu ganado. La productividad comienza aquí.
+              </p>
+              <div class="flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="400">
+                <button onclick="window.location.href='pedidos.html'"
+                  class="rounded-lg bg-primary px-8 py-4 text-base font-bold text-background-dark hover:-translate-y-1 shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all flex items-center gap-2">
+                  Realizar Pedido <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+                <button onclick="window.location.href='servicios.html'"
+                  class="rounded-lg border border-slate-300 dark:border-slate-700 px-8 py-4 text-base font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Nuestros
+                  Servicios</button>
+              </div>
+            </div>
+
+            <div class="relative" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1200">
+              <div
+                class="aspect-square w-full rounded-2xl bg-cover bg-center shadow-2xl ring-1 ring-slate-900/10 transition-transform duration-700 hover:scale-105"
+                data-alt="Golden corn field at sunset with farm machinery"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCy7rLPewBTa6gkpggzPW7KE1XGzKvKhUot0a9aZmN_mKGR-bIDfVazqBydhjRcjvPo-zsau9Z3pJ8dYfLDsOfqkWskjZr_oss61VKojpnj_CsX-ezLSm3kkdnqLH_ljLrK_wi3oPoSrKo6K3ANfRcqmi04JMvCRj-OZHaC7kCebkBB9b-Ker1B9YVk-Kz0-IFwl813Dr4pEaLpkZQxwLZ5Ynw5N1rzxLSOniKxZw9coFj2sP-fnk0lRVinwYghLc1hEyRMXBRsRvk");'>
+              </div>
+              <div
+                class="absolute -bottom-6 -left-6 rounded-xl bg-white dark:bg-slate-900 p-6 shadow-xl ring-1 ring-slate-900/10"
+                data-aos="zoom-in" data-aos-delay="800">
+                <div class="flex items-center gap-4">
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20 text-primary animate-pulse">
+                    <span class="material-symbols-outlined">trending_up</span>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-slate-500">Aumento de Rendimiento</p>
+                    <p class="text-xl font-bold text-slate-900 dark:text-white">+24% Promedio</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Carousel Section -->
+      <section class="py-24 bg-slate-50 dark:bg-slate-900/30" id="products">
+        <div class="mx-auto max-w-7xl px-6 text-center">
+          <h2 class="mb-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl"
+            data-aos="fade-up">Nuestra Selección Premium</h2>
+          <p class="mx-auto mb-16 max-w-2xl text-slate-600 dark:text-slate-400" data-aos="fade-up" data-aos-delay="100">
+            Proporcionando la energía fundacional y fibra que su rebaño necesita.</p>
+
+          <div class="swiper productSwiper" data-aos="fade-up" data-aos-delay="200">
+            <div class="swiper-wrapper mb-12">
+
+              <div class="swiper-slide h-auto">
+                <div
+                  class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 p-4 shadow-lg ring-1 ring-slate-200 dark:ring-slate-800 transition-all hover:-translate-y-2 h-full flex flex-col">
+                  <div class="aspect-video w-full overflow-hidden rounded-xl">
+                    <div
+                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB613-oyzZ8utL5v5lJtgvDfHM6ryHJyQzqCCvLM6FBKcaaaZvNISx3aTYXsAYG9wcR8LItEFTROJhMYSjB58eT70Sc1ZJ9WRyBmoEzWN_tmIRpGiOzUW1zGPvOKPHi5LhSuwnsUBkViArZi5aS_MjenyuJP9dRXD_zGrkLh1-I4NXGB6fOXYFxJbZjuYcLp3s7kNDMB5iMxMUfvFGsehNLV2A4D_qYJkEtQsfOH92tXfsm2O5JH_rKxCkjOj5kvainmqYzMC-02Ug");'>
+                    </div>
+                  </div>
+                  <div class="p-6 text-left flex-grow flex flex-col">
+                    <h3 class="mb-2 text-2xl font-bold text-slate-900 dark:text-white">Ensilado de Maíz</h3>
+                    <p class="mb-6 text-slate-600 dark:text-slate-400">Forraje de alta energía perfecto para vacas
+                      lecheras de alta producción.</p>
+                    <ul class="mb-8 space-y-2 text-sm text-slate-600 dark:text-slate-400 flex-grow">
+                      <li class="flex items-center gap-2"><span
+                          class="material-symbols-outlined text-primary text-lg">check</span> Alto contenido en almidón
+                      </li>
+                      <li class="flex items-center gap-2"><span
+                          class="material-symbols-outlined text-primary text-lg">check</span> Máxima Palatabilidad</li>
+                    </ul>
+                    <button onclick="window.location.href='pedidos.html'"
+                      class="w-full rounded-lg bg-slate-900 dark:bg-primary py-3 text-sm font-bold text-white dark:text-background-dark hover:scale-[1.02] transition-transform">Añadir
+                      al Pedido</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide h-auto">
+                <div
+                  class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 p-4 shadow-lg ring-1 ring-slate-200 dark:ring-slate-800 transition-all hover:-translate-y-2 h-full flex flex-col">
+                  <div class="aspect-video w-full overflow-hidden rounded-xl">
+                    <div
+                      class="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAw-nJhxB3Dy-V2v7dXQfYUvFlrAuqom7ZWpjvTpEW_2WwcBxRc_ZBmSI0DdqxDpQhKQfOFcAIxUR-JIjR5Sa8ceD-jdH6sMmFU76P8y1HPqJ0ZnYLAYGLvEEsClsqAsnBD3_QupjflbggYfebf152_W7vXxYOAeNjBoEdClbuln3w6bI4yU4XIW7mlPwtc_N7zIK5YVp3uzGMX4ktU_nkLo_2glbTfE2_ZcsZruy3lZc8wEsMdcdWKZdH3oLdARx683RXcStf0zEw");'>
+                    </div>
+                  </div>
+                  <div class="p-6 text-left flex-grow flex flex-col">
+                    <h3 class="mb-2 text-2xl font-bold text-slate-900 dark:text-white">Ensilado de Sorgo</h3>
+                    <p class="mb-6 text-slate-600 dark:text-slate-400">Tolerante a la sequía y rico en fibra,
+                      proporciona excelente volumen.</p>
+                    <ul class="mb-8 space-y-2 text-sm text-slate-600 dark:text-slate-400 flex-grow">
+                      <li class="flex items-center gap-2"><span
+                          class="material-symbols-outlined text-primary text-lg">check</span> Alta Eficiencia de Fibra
+                      </li>
+                      <li class="flex items-center gap-2"><span
+                          class="material-symbols-outlined text-primary text-lg">check</span> Abastecimiento resistente
+                      </li>
+                    </ul>
+                    <button onclick="window.location.href='pedidos.html'"
+                      class="w-full rounded-lg bg-slate-900 dark:bg-primary py-3 text-sm font-bold text-white dark:text-background-dark hover:scale-[1.02] transition-transform">Añadir
+                      al Pedido</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Carousel -->
+      <section class="bg-primary/5 py-24" id="testimonials">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 class="mb-16 text-center text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl"
+            data-aos="fade-up">Con la confianza de los granjeros</h2>
+
+          <div class="swiper testimonialsSwiper" data-aos="fade-up" data-aos-delay="200">
+            <div class="swiper-wrapper mb-12">
+              <div class="swiper-slide h-auto">
+                <div
+                  class="rounded-xl bg-white dark:bg-slate-900 p-8 shadow-md h-full hover:-translate-y-2 transition-transform">
+                  <div class="mb-4 flex gap-1 text-primary">
+                    <span class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                  </div>
+                  <p class="mb-6 italic text-slate-600 dark:text-slate-400">"La calidad del ensilado de maíz de Santa
+                    Cruz no tiene rival. Incrementamos el rendimiento."</p>
+                  <div class="flex items-center gap-4 mt-auto">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 bg-cover"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjNiAa84iM8z3f08qIMbzBHC6x0STDp22iqcTdth7nn6gDMLJ73pfsU5hd2jycetKMff-_ZlpVTBqeF1h-ZFi85qWJnACQwCCzfp25tiy9YVMlJsygs8UhXXGpzl_iG6jZ8lDHs4_iG4WWtsa1VqT8h6LcmlHSwwITibSYL87BDDDIz2sq_WStNCh-eonfxjJeSWgwa9R3FE160DfXgf-xEegPfAT_qvMl52vMfIcSyohZdq3cy1alQq3x08eXHp-t9OD68f2hYz4");'>
+                    </div>
+                    <div>
+                      <p class="font-bold text-slate-900 dark:text-white">Ricardo Gomez</p>
+                      <p class="text-sm text-slate-500">Propietario</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide h-auto">
+                <div
+                  class="rounded-xl bg-white dark:bg-slate-900 p-8 shadow-md h-full hover:-translate-y-2 transition-transform">
+                  <div class="mb-4 flex gap-1 text-primary">
+                    <span class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                  </div>
+                  <p class="mb-6 italic text-slate-600 dark:text-slate-400">"Excelente servicio y entrega. El sorgo se
+                    mantiene muy fresco toda la temporada de sequía."</p>
+                  <div class="flex items-center gap-4 mt-auto">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 bg-cover"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCVtN67tcLR3FXX_7ZMDlubq2FX60yB0kFD_pBGWxZp1_RG_Ebtzg1k7r0XeyIUu75mwkjTVsk5MA-fpWyGuf3_yjKXlble44HBqDLDMagWjXHZzJ1N6C4M3YRZFsY5YnQQLf-cFPHlGLKGxf4g1k3H0lmyvfB87F5R2ESt85oFIYFgwniDi7rqpXbg8yqizhlyqfp67LZZa7z-kTUCJfLJnyfFH4BdI4WacQz9-mfTPRANe_bUmS8CI9g9T07pS1jGmSHranDFBbM");'>
+                    </div>
+                    <div>
+                      <p class="font-bold text-slate-900 dark:text-white">Sofia Mendez</p>
+                      <p class="text-sm text-slate-500">Productora</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide h-auto">
+                <div
+                  class="rounded-xl bg-white dark:bg-slate-900 p-8 shadow-md h-full hover:-translate-y-2 transition-transform">
+                  <div class="mb-4 flex gap-1 text-primary">
+                    <span class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span
+                      class="material-symbols-outlined">star</span><span class="material-symbols-outlined">star</span>
+                  </div>
+                  <p class="mb-6 italic text-slate-600 dark:text-slate-400">"La consistencia es increíble, finalmente
+                    tenemos un socio confiable."</p>
+                  <div class="flex items-center gap-4 mt-auto">
+                    <div class="h-12 w-12 rounded-full bg-slate-200 bg-cover"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBbkpJkjmaNWSjADaQn93UxWUzFRjCGInahgceIe82TCqQ4tuK6NA4T_oddz8LvSnwBXBwYigIOR5rxVMCSIIJZicsjZnG1_U2u6hg6EHXrC8l8owuipD582_xUuyApsGhdZqaFEQ0PCqKM7Kmljowub5KCA89pNufLxArb98M8GWTk2y-chb2DTQaeofXxEcOdwCZuLT8fqnJk89vhUVxsgJeWYi7ByaOWg1RG95nXBRjitIcIOvd4cO2MHjmFEVJSPvdXNkxJ5HQ");'>
+                    </div>
+                    <div>
+                      <p class="font-bold text-slate-900 dark:text-white">Jorge Valdes</p>
+                      <p class="text-sm text-slate-500">Jefe Cooperativa</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="py-24" id="contact">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="grid lg:grid-cols-2 gap-16">
+            <div data-aos="fade-right">
+              <h2 class="mb-6 text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">Obtén una
+                Cotización Personalizada</h2>
+              <p class="mb-8 text-lg text-slate-600 dark:text-slate-400">¿Interesado en nuestros productos? Llena el
+                formulario o únete al panel para recibir asesoría técnica.</p>
+              <div class="space-y-6">
+                <div class="flex items-center gap-4 hover:-translate-y-1 transition-transform cursor-pointer group">
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-slate-900 transition-colors">
+                    <span class="material-symbols-outlined">mail</span>
+                  </div>
+                  <div>
+                    <p class="font-bold">Escríbenos</p>
+                    <p class="text-slate-500">ventas@ensiladosantacruz.com</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4 hover:-translate-y-1 transition-transform cursor-pointer group">
+                  <div
+                    class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-slate-900 transition-colors">
+                    <span class="material-symbols-outlined">call</span>
+                  </div>
+                  <div>
+                    <p class="font-bold">Llámanos</p>
+                    <p class="text-slate-500">+591 (3) 123-4567</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-3xl bg-white dark:bg-slate-900 p-8 shadow-2xl ring-1 ring-slate-200 dark:ring-slate-800"
+              data-aos="fade-left">
+              <form class="grid gap-6">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div class="flex flex-col gap-2">
+                    <label class="text-sm font-semibold">Nombre</label>
+                    <input
+                      class="rounded-xl border-slate-300 dark:border-slate-700 bg-transparent focus:border-primary focus:ring-primary dark:text-white shadow-sm transition-all"
+                      placeholder="Juan" type="text" />
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <label class="text-sm font-semibold">Apellido</label>
+                    <input
+                      class="rounded-xl border-slate-300 dark:border-slate-700 bg-transparent focus:border-primary focus:ring-primary dark:text-white shadow-sm transition-all"
+                      placeholder="Pérez" type="text" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <label class="text-sm font-semibold">Mensaje</label>
+                  <textarea
+                    class="rounded-xl border-slate-300 dark:border-slate-700 bg-transparent focus:border-primary focus:ring-primary dark:text-white shadow-sm transition-all"
+                    placeholder="¿Cómo podemos potenciar tu granja?" rows="4"></textarea>
+                </div>
+                <button onclick="window.location.href='cotizacion.html'; return false;"
+                  class="rounded-xl bg-primary py-4 text-center text-base font-bold text-slate-900 shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all"
+                  type="button">Ir a Cotización Rápida</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-12 text-slate-400">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
+          <div class="flex items-center gap-2">
+            <div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-background-dark">
+              <span class="material-symbols-outlined text-sm font-bold">agriculture</span>
+            </div>
+            <span class="text-lg font-extrabold tracking-tight text-white uppercase">Santa Cruz</span>
+          </div>
+          <p class="text-sm">© 2024 Ensilados Santa Cruz. Todos los derechos reservados.</p>
+          <div class="flex gap-6">
+            <a class="hover:text-primary transition-colors hover:-translate-y-1" href="#"><span
+                class="material-symbols-outlined">public</span></a>
+            <a class="hover:text-primary transition-colors hover:-translate-y-1" href="#"><span
+                class="material-symbols-outlined">mail</span></a>
+            <a class="hover:text-primary transition-colors hover:-translate-y-1" href="#"><span
+                class="material-symbols-outlined">share</span></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Iniciar Animaciones
+    AOS.init({ once: true, duration: 800, offset: 100 });
+
+    // Iniciar Carrusel Testimonios
+    const testimonialsSwiper = new Swiper('.testimonialsSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      breakpoints: {
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }
+    });
+
+    // Iniciar Carrusel Productos (Mobile views only)
+    const productSwiper = new Swiper('.productSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 30 },
+      }
+    });
+
+    // Header effect on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        document.getElementById('main-nav').classList.add('shadow-md');
+      } else {
+        document.getElementById('main-nav').classList.remove('shadow-md');
+      }
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+
+</html>

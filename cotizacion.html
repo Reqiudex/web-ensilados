@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5bec13",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#162210",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <title>Cotización | Ensilados Santa Cruz</title>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar (Simulating logged in state) -->
+            <header
+                class="flex items-center justify-between border-b border-primary/10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-6 md:px-20 py-4 sticky top-0 z-50 shadow-sm transition-shadow"
+                id="main-nav">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.location.href='index.html'">
+                    <div
+                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-slate-900 shadow-md group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-2xl">agriculture</span>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold leading-tight tracking-tight text-slate-900 dark:text-slate-100">
+                            Ensilados Santa Cruz</h1>
+                        <p class="text-[10px] font-bold text-primary uppercase tracking-wider">Módulo de Cliente</p>
+                    </div>
+                </div>
+                <div class="flex flex-1 justify-end gap-6 items-center">
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                            href="index.html">Inicio</a>
+                        <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                            href="servicios.html">Servicios</a>
+                        <a class="text-slate-700 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors"
+                            href="pedidos.html">Pedidos</a>
+                        <a class="text-primary text-sm font-bold border-b-2 border-primary pb-1"
+                            href="cotizacion.html">Cotización</a>
+
+                        <a class="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white hover:text-primary transition-colors ml-4"
+                            href="login.html" id="login-nav-link">
+                            <span class="material-symbols-outlined">login</span>
+                            Acceso
+                        </a>
+                        <div class="relative group hidden" id="user-nav-dropdown">
+                            <div class="flex items-center gap-2 cursor-pointer ml-2">
+                                <span id="auth-user-name"
+                                    class="text-sm font-bold text-slate-900 dark:text-white"></span>
+                                <div
+                                    class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold overflow-hidden">
+                                    <span class="material-symbols-outlined text-[18px]">person</span>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                                <div class="p-2 flex flex-col gap-1">
+                                    <button onclick="window.location.href='pedidos.html'"
+                                        class="w-full text-left px-3 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg flex items-center gap-2 transition-colors"><span
+                                            class="material-symbols-outlined text-[18px]">dashboard</span>
+                                        Panel</button>
+                                    <button onclick="logoutUser()"
+                                        class="w-full text-left px-3 py-2 text-sm font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg flex items-center gap-2 transition-colors mt-2"><span
+                                            class="material-symbols-outlined text-[18px]">logout</span> Salir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="flex-1 flex justify-center py-8 px-4 md:px-10 max-w-[1400px] mx-auto overflow-hidden">
+                <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                    <!-- Sidebar Navigation (Desktop) -->
+                    <aside class="hidden lg:flex lg:col-span-3 flex-col gap-4" data-aos="fade-right">
+                        <div
+                            class="p-5 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div
+                                    class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                    <span class="material-symbols-outlined">dashboard</span>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-black uppercase tracking-wider text-slate-400">Portal</p>
+                                    <p class="text-sm font-bold">Panel de Cliente</p>
+                                </div>
+                            </div>
+                            <nav class="flex flex-col gap-1">
+                                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors group"
+                                    href="pedidos.html">
+                                    <span
+                                        class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">content_paste</span>
+                                    <span class="text-sm font-medium">Realizar Pedido</span>
+                                </a>
+                                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-slate-900 font-bold shadow-md shadow-primary/20 hover:-translate-y-[2px] transition-all"
+                                    href="cotizacion.html">
+                                    <span class="material-symbols-outlined text-xl">calculate</span>
+                                    <span class="text-sm">Cotizar Envío</span>
+                                </a>
+                                <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors group"
+                                    href="servicios.html">
+                                    <span
+                                        class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">support_agent</span>
+                                    <span class="text-sm font-medium">Ayuda / Consultas</span>
+                                </a>
+                            </nav>
+                        </div>
+
+                        <div
+                            class="p-6 bg-slate-900 dark:bg-slate-900 border border-slate-800 rounded-2xl text-white relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                            </div>
+                            <p class="text-xs font-black text-primary uppercase mb-2 relative z-10">Servicio Express</p>
+                            <p class="text-sm text-slate-300 mb-4 relative z-10">Estimaciones inmediatas con GPS
+                                satelital.</p>
+                            <div
+                                class="w-full py-3 bg-white text-slate-900 text-sm font-bold rounded-xl text-center shadow-lg relative z-10 hover:scale-105 transition-transform cursor-pointer">
+                                Revisar Flotilla</div>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content Form Area -->
+                    <div class="lg:col-span-9 space-y-8" data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="100">
+                        <section
+                            class="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden transform transition-all hover:shadow-lg hover:border-primary/20">
+                            <div
+                                class="bg-primary/10 px-8 py-6 border-b border-primary/20 flex items-center justify-between">
+                                <div>
+                                    <h1
+                                        class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                                        <span
+                                            class="material-symbols-outlined text-primary text-3xl">local_shipping</span>
+                                        Cotización de Envíos
+                                    </h1>
+                                    <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">Obtén un estimado
+                                        instantáneo para tu transporte de alta escala.</p>
+                                </div>
+                            </div>
+
+                            <form class="p-8 space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="space-y-2 group">
+                                        <label
+                                            class="text-sm font-bold text-slate-700 dark:text-slate-300 group-focus-within:text-primary transition-colors">Ubicación
+                                            de Entrega</label>
+                                        <div
+                                            class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
+                                            <span
+                                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">location_on</span>
+                                            <input id="quote-loc"
+                                                class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 focus:outline-none"
+                                                placeholder="Ciudad, Municipio o Estancia" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2 group">
+                                        <label
+                                            class="text-sm font-bold text-slate-700 dark:text-slate-300 group-focus-within:text-primary transition-colors">Toneladas</label>
+                                        <div
+                                            class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
+                                            <span
+                                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">scale</span>
+                                            <input id="quote-tons"
+                                                class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 focus:outline-none"
+                                                placeholder="Ej. 100" type="number" />
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2 group">
+                                        <label
+                                            class="text-sm font-bold text-slate-700 dark:text-slate-300 group-focus-within:text-primary transition-colors">Fecha
+                                            Preferida</label>
+                                        <div
+                                            class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
+                                            <span
+                                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">calendar_today</span>
+                                            <input
+                                                class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 focus:outline-none"
+                                                type="date" />
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2 group">
+                                        <label
+                                            class="text-sm font-bold text-slate-700 dark:text-slate-300 group-focus-within:text-primary transition-colors">Tipo
+                                            de Carga</label>
+                                        <div
+                                            class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition-all shadow-sm">
+                                            <span
+                                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">grass</span>
+                                            <select
+                                                class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 focus:outline-none appearance-none cursor-pointer">
+                                                <option>Ensilaje de Maíz Blanco</option>
+                                                <option>Ensilaje de Sorgo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="pt-4 flex flex-col sm:flex-row gap-4 border-t border-slate-100 dark:border-slate-800/50 mt-6 pt-8">
+                                    <button id="btn-analyze"
+                                        class="flex-1 bg-primary hover:bg-primary/90 text-slate-900 font-bold py-4 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-transform flex items-center justify-center gap-2 group"
+                                        type="button">
+                                        <span
+                                            class="material-symbols-outlined group-hover:rotate-12 transition-transform">analytics</span>
+                                        Analizar Ruta Express
+                                    </button>
+                                    <button
+                                        class="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold py-4 px-6 rounded-xl transition-all"
+                                        type="button" onclick="window.location.href='pedidos.html'">
+                                        Ir a Facturación
+                                    </button>
+                                </div>
+                            </form>
+                        </section>
+
+                        <!-- Cards / Value Props -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
+                            <div
+                                class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+                                <span
+                                    class="material-symbols-outlined text-primary mb-3 text-3xl group-hover:scale-110 transition-transform block">verified</span>
+                                <h3 class="font-bold text-sm mb-1">Garantía de Temperatura</h3>
+                                <p class="text-xs text-slate-500">Mantenemos el ecosistema ideal en cabina.</p>
+                            </div>
+                            <div
+                                class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+                                <span
+                                    class="material-symbols-outlined text-primary mb-3 text-3xl group-hover:scale-110 transition-transform block">monitoring</span>
+                                <h3 class="font-bold text-sm mb-1">GPS y Rastreo</h3>
+                                <p class="text-xs text-slate-500">Visualización de ruta satelital activada.</p>
+                            </div>
+                            <div
+                                class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:border-primary/50 transition-colors group">
+                                <span
+                                    class="material-symbols-outlined text-primary mb-3 text-3xl group-hover:scale-110 transition-transform block">savings</span>
+                                <h3 class="font-bold text-sm mb-1">Costos Optimizados</h3>
+                                <p class="text-xs text-slate-500">Calculamos vías y peajes automatizados.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+
+            <footer
+                class="mt-auto bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-6 px-6">
+                <div class="max-w-[1400px] mx-auto text-center flex flex-col items-center">
+                    <div class="flex items-center gap-2 text-primary opacity-50 mb-2">
+                        <span class="material-symbols-outlined text-xl">agriculture</span>
+                    </div>
+                    <p class="text-xs text-slate-500">© 2024 Ensilados Santa Cruz | Sistema Logístico Certificado v1.0
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800 });
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>
