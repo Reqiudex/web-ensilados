@@ -1,0 +1,118 @@
+{
+  "url": "https://ensilados.cerice360.com/",
+  "anchos": {
+    "360": {
+      "tCargaMs": 1481,
+      "anchoDoc": 449,
+      "desbordeHorizontal": true,
+      "consola": [
+        "error: Failed to load resource: the server responded with a status of 404 ()",
+        "warning: cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation",
+        "error: Refused to execute script from 'https://ensilados.cerice360.com/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled."
+      ],
+      "fallidas": [
+        "404 https://ensilados.cerice360.com/app.js",
+        "FALLO https://ensilados.cerice360.com/app.js net::ERR_ABORTED"
+      ],
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "n": 4,
+          "ej": [
+            ".inline-flex ::   Element has insufficient color contrast of 1.39 (foreground color: #5bec13, background color: #e7f7df, font size: 10.5pt (14px), font weight: bold). Expected ",
+            ".inline-block ::   Element has insufficient color contrast of 1.46 (foreground color: #5bec13, background color: #f6f8f6, font size: 36.0pt (48px), font weight: bold). Expected ",
+            ".cursor-pointer.group.gap-4:nth-child(1) > div:nth-child(2) > .text-slate-500 ::   Element has insufficient color contrast of 4.45 (foreground color: #64748b, background color: #f6f8f6, font size: 12.0pt (16px), font weight: normal). Expecte"
+          ]
+        },
+        {
+          "id": "target-size",
+          "impact": "serious",
+          "help": "All touch targets must be 24px large, or leave sufficient space",
+          "n": 5,
+          "ej": [
+            ".swiper-pagination-bullet-active[aria-label=\"Go to slide 1\"][aria-current=\"true\"] ::   Target has insufficient size (8px by 8px, should be at least 24px by 24px)",
+            ".productSwiper > .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets > .swiper-pagination-bullet[aria-label=\"Go to slide 2\"][role=\"button\"] ::   Target has insufficient size (8px by 8px, should be at least 24px by 24px)",
+            ".testimonialsSwiper > .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets > .swiper-pagination-bullet[aria-label=\"Go to slide 1\"][role=\"button\"] ::   Target has insufficient size (8px by 8px, should be at least 24px by 24px)"
+          ]
+        }
+      ],
+      "tactilesPequenos": [
+        "SPAN \"Go to slide 1\" 8x8",
+        "SPAN \"Go to slide 2\" 8x8",
+        "SPAN \"Go to slide 1\" 8x8",
+        "SPAN \"Go to slide 2\" 8x8",
+        "SPAN \"Go to slide 3\" 8x8"
+      ]
+    },
+    "768": {
+      "tCargaMs": 1442,
+      "anchoDoc": 768,
+      "desbordeHorizontal": false,
+      "consola": [
+        "error: Failed to load resource: the server responded with a status of 404 ()",
+        "warning: cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation",
+        "error: Refused to execute script from 'https://ensilados.cerice360.com/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled."
+      ],
+      "fallidas": [
+        "404 https://ensilados.cerice360.com/app.js",
+        "FALLO https://ensilados.cerice360.com/app.js net::ERR_ABORTED"
+      ],
+      "axe": null,
+      "tactilesPequenos": [
+        "A \"Inicio\" 38x20",
+        "SPAN \"Go to slide 1\" 8x8",
+        "SPAN \"Go to slide 2\" 8x8"
+      ]
+    },
+    "1366": {
+      "tCargaMs": 1371,
+      "anchoDoc": 1366,
+      "desbordeHorizontal": false,
+      "consola": [
+        "error: Failed to load resource: the server responded with a status of 404 ()",
+        "warning: cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation",
+        "error: Refused to execute script from 'https://ensilados.cerice360.com/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled."
+      ],
+      "fallidas": [
+        "404 https://ensilados.cerice360.com/app.js",
+        "FALLO https://ensilados.cerice360.com/app.js net::ERR_ABORTED"
+      ],
+      "axe": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "n": 5,
+          "ej": [
+            "a[href=\"index.html\"] ::   Element has insufficient color contrast of 1.54 (foreground color: #5bec13, background color: #fdfefd, font size: 10.5pt (14px), font weight: normal). Expecte",
+            ".inline-flex ::   Element has insufficient color contrast of 1.39 (foreground color: #5bec13, background color: #e7f7df, font size: 10.5pt (14px), font weight: bold). Expected ",
+            ".inline-block ::   Element has insufficient color contrast of 1.46 (foreground color: #5bec13, background color: #f6f8f6, font size: 54.0pt (72px), font weight: bold). Expected "
+          ]
+        }
+      ],
+      "tactilesPequenos": [
+        "A \"Inicio\" 38x20"
+      ]
+    },
+    "1920": {
+      "tCargaMs": 1376,
+      "anchoDoc": 1920,
+      "desbordeHorizontal": false,
+      "consola": [
+        "error: Failed to load resource: the server responded with a status of 404 ()",
+        "warning: cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation",
+        "error: Refused to execute script from 'https://ensilados.cerice360.com/app.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled."
+      ],
+      "fallidas": [
+        "404 https://ensilados.cerice360.com/app.js",
+        "FALLO https://ensilados.cerice360.com/app.js net::ERR_ABORTED"
+      ],
+      "axe": null,
+      "tactilesPequenos": [
+        "A \"Inicio\" 38x20"
+      ]
+    }
+  }
+}
