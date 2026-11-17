@@ -1,0 +1,41 @@
+{
+  "url": "https://ensilados.cerice360.com/",
+  "anchos": {
+    "360": {
+      "tCargaMs": 1050,
+      "anchoDoc": 360,
+      "desbordeHorizontal": false,
+      "consola": [],
+      "fallidas": [],
+      "axe": [],
+      "tactilesPequenos": []
+    },
+    "768": {
+      "tCargaMs": 1336,
+      "anchoDoc": 768,
+      "desbordeHorizontal": false,
+      "consola": [],
+      "fallidas": [],
+      "axe": null,
+      "tactilesPequenos": []
+    },
+    "1366": {
+      "tCargaMs": 1234,
+      "anchoDoc": 1366,
+      "desbordeHorizontal": false,
+      "consola": [],
+      "fallidas": [],
+      "axe": [],
+      "tactilesPequenos": []
+    },
+    "1920": {
+      "tCargaMs": 1100,
+      "anchoDoc": 1920,
+      "desbordeHorizontal": false,
+      "consola": [],
+      "fallidas": [],
+      "axe": null,
+      "tactilesPequenos": []
+    }
+  }
+}

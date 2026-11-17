@@ -11,21 +11,23 @@ teclado, galería, descargas, enlaces). Capturas e informes JSON en `docs/captur
 
 ## 1. Resumen de medidas
 
-| Métrica | Web antes (prod) | Web después | vCard antes (prod) | vCard después |
+| Métrica | Web antes | Web después | vCard antes | vCard después |
 |---|---|---|---|---|
-| Lighthouse rendimiento móvil | 54 | 100 (local) | 62 | 99 (local) |
-| LCP móvil | 13,8 s | 1,1 s (local) | 7,3 s | 1,5 s (local) |
-| Peso total móvil | 4.060 KiB | 109 KiB | 13.937 KiB | 220 KiB |
+| Lighthouse rendimiento móvil | 54 | 99 | 62 | 95 |
+| LCP móvil | 13,8 s | 1,9 s | 7,3 s | 2,7 s |
+| Lighthouse rendimiento escritorio | 80 | 99 | 92 | 93 (con video) |
+| Peso total móvil | 4.060 KiB | 120 KiB | 13.937 KiB | 231 KiB |
 | Lighthouse accesibilidad | 95 | 100 | 77 | 100 |
 | Lighthouse buenas prácticas | 96 | 100 | 100 | 100 |
-| Lighthouse SEO | 80 | 100 | 85 | 100 |
-| Violaciones axe (360 / 1366) | 2 / 1 tipos | 0 / 0 | 4 / 4 tipos | 0 / 0 |
+| Lighthouse SEO | 80 | 93 (*) | 85 | 92 (*) |
+| Violaciones axe (360 / 1366 px) | 2 / 1 tipos | 0 / 0 | 4 / 4 tipos | 0 / 0 |
 | Peticiones con error | `app.js` 404 en cada visita | 0 | 0 (propias) | 0 |
 | Desborde horizontal a 360 px | sí (449 px) | no | no | no |
-| Terceros cargados | Tailwind CDN, AOS, Swiper, Google Fonts ×2, fotos de googleusercontent | ninguno | Font Awesome CDN, YouTube (también en móvil) | YouTube sin cookies, solo ≥ 900 px |
+| Terceros cargados | Tailwind CDN, AOS, Swiper, Google Fonts ×2, fotos de googleusercontent | solo el beacon de Cloudflare | Font Awesome CDN, YouTube (también en móvil) | YouTube sin cookies solo ≥ 900 px + beacon de Cloudflare |
 
-"Local" = contenedor construido con el mismo Dockerfile servido en `127.0.0.1`; las cifras de producción tras
-publicar están en la sección 6.
+Todas las cifras de "antes" y "después" son de producción (`https://…cerice360.com`), medidas el 2026-11-17.
+(*) El único punto SEO que falta es `robots.txt`: lo genera Cloudflare (robots.txt gestionado, con la directiva
+`Content-Signal`) y Lighthouse 11 no la conoce. Es configuración de la zona en Cloudflare; no se tocó.
 
 ## 2. Hallazgos de la web (`web-ensilados`), por impacto
 
@@ -84,12 +86,14 @@ No podía endurecerse porque las páginas cargaban scripts y estilos en línea y
 
 Después:
 
-- Web: `default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self';
-  connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'` + COOP
-  `same-origin`. Sin `unsafe-inline` ni orígenes externos.
+- Web: `default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self';
+  img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none';
+  base-uri 'self'; form-action 'none'; frame-ancestors 'self'` + COOP `same-origin`. Sin `unsafe-inline`; el único
+  origen externo es el beacon de Cloudflare Web Analytics, que Cloudflare inyecta en la página (la primera versión
+  publicada lo bloqueaba y se corrigió).
 - vCard: igual, más `frame-src https://www.youtube-nocookie.com` para el video.
 - `Permissions-Policy`: también se niega `geolocation` (antes `self`; ninguna página la usa), `payment` y `usb`.
-- nginx: `server_tokens off` se mantiene; 404 propia (web); `.vcf` como `text/vcard`; caché de 1 año para
+- nginx: `server_tokens off` se mantiene; la página va con `Cache-Control: no-cache`; 404 propia (web); `.vcf` como `text/vcard`; caché de 1 año para
   `/assets/` (archivos con huella de Vite) y 30 días para `/img/`; `deny` para archivos ocultos; `absolute_redirect
   off` para que las redirecciones no salgan como `http://`.
 - `.dockerignore` en ambos repos: en la vCard el `Dockerfile` copia todo el repo al directorio público, así que sin
@@ -122,7 +126,19 @@ Respaldo previo (en `~/respaldo/ensilados-uiux-2026-11-17/`): imágenes Docker e
 JSON de configuración de ambas apps en Coolify y salida de `check-webs.sh` antes del cambio. Etiqueta git
 `antes-uiux-2026-11-17` en ambos repos apuntando al commit que estaba en producción.
 
-Resultados en producción tras publicar: ver `docs/capturas-2026-11-17/produccion.md`.
+Resultados en producción (capturas en `docs/capturas-2026-11-17/produccion/`): tabla de la sección 1, 0 fallos en
+las 50 comprobaciones de `prueba-web.js` y `prueba-vcard.js` contra los dominios reales, 0 violaciones axe y
+`~/check-webs.sh` igual que antes (16 ok, 0 fallas, 5 apagadas a propósito; salidas en
+`~/respaldo/ensilados-uiux-2026-11-17/check-webs-{antes,despues}.txt`). `test1` y `escz` responden 200.
+
+Incidencias durante la publicación, ya resueltas:
+1. La CSP nueva bloqueaba el beacon de Cloudflare Web Analytics → se permitió explícitamente.
+2. Cloudflare guarda `styles.css` 4 h (`cf-cache-status: HIT`): la vCard nueva salió unos minutos con la hoja
+   vieja. Ahora `index.html` pide `v20261117b/styles.css` y `v20261117b/js/vcard.js` (nginx quita el prefijo).
+   **Al cambiar esos archivos hay que subir la versión en `index.html`.** Se usa ruta y no `?v=` porque
+   `actualizar-copias.sh` del guardián descarta las URL con `?` y la copia de emergencia quedaba sin estilos
+   (verificado con el mismo `wget`). La web no lo necesita: Vite pone huella a sus archivos.
+3. La copia de emergencia del guardián se actualizará sola en el cron de las 08:30 UTC; no se forzó.
 
 ### Vuelta atrás
 
@@ -132,7 +148,7 @@ Resultados en producción tras publicar: ver `docs/capturas-2026-11-17/produccio
    ```bash
    cd ~/CODING/codigo/web/web-ensilados        # o vcard-ensilados
    git checkout main && git pull
-   git revert --no-edit antes-uiux-2026-11-17..main   # revierte los commits de esta mejora
+   git revert --no-edit antes-uiux-2026-11-17..main   # revierte todos los commits de esta mejora
    git push origin main
    # redeploy desde Coolify (o API: GET /api/v1/deploy?uuid=<uuid de la app>)
    ```
